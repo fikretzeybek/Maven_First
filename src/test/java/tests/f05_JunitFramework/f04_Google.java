@@ -22,7 +22,7 @@ public class f04_Google {
         //2- https://www.google.com/ adresine gidin
         driver.get("https://www.google.com/");
         //3- cookies uyarisini kabul ederek kapatin
-        driver.findElement(By.xpath("//*[text()='Accept all']")).click();
+        //driver.findElement(By.xpath("//*[text()='Accept all']")).click();
         //4- Sayfa basliginin “Google” ifadesi icerdigini test edin
         String expectedTitleIcerik = "Google";
         String actualTitle = driver.getTitle();
