@@ -43,8 +43,8 @@ public class F01_RadioButton {
         //erkekRadioButton.sendKeys(Keys.PAGE_DOWN);
        //JavascriptExecutor js = (JavascriptExecutor) driver;
        //js.executeScript("arguments[0].click();", erkekRadioButton);
-        //erkekRadioButton.click();
         erkekRadioButton.sendKeys(Keys.SPACE);
+        erkekRadioButton.click();
         //	c. Sectiginiz radio button’un seçili, ötekilerin seçili olmadigini test edin
 
         Assert.assertTrue(erkekRadioButton.isSelected());
