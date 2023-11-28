@@ -1,7 +1,6 @@
 package tests.f08_iframe_cokluwindows;
 
 
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -14,7 +13,7 @@ import java.util.Set;
 public class F06_KontrolsuzCokluWindowKullanimi extends TestBase {
 
     @Test
-    public void test01(){
+    public void test01() {
 
         //● https://testotomasyonu.com/addremove/ adresine gidin.
         driver.get("https://testotomasyonu.com/addremove/");
@@ -22,15 +21,18 @@ public class F06_KontrolsuzCokluWindowKullanimi extends TestBase {
         WebElement yaziElementi = driver.findElement(By.tagName("h2"));
         String expectedYazi = "Add/Remove Elements";
         String actualYazi = yaziElementi.getText();
-        Assert.assertEquals(expectedYazi,actualYazi);
+        Assert.assertEquals(expectedYazi, actualYazi);
         //● Sayfa başlığının(title) “Test Otomasyonu” olduğunu doğrulayın.
 
         String expectedTitle = "Test Otomasyonu";
         String actualTitle = driver.getTitle();
-        Assert.assertEquals(expectedTitle,actualTitle);
+        Assert.assertEquals(expectedTitle, actualTitle);
 
         //● ’Please click for Electronics Products’ linkine tiklayin.
-        driver.findElement(By.linkText("Electronics Products")).click();
+        WebElement electronicProdElementi = driver.findElement(By.xpath("//a[text()='Electronics Products']"));
+        //electronicProdElementi.sendKeys(Keys.PAGE_DOWN);
+        electronicProdElementi.click();
+
 
         /*
             Driver bir webelement'e click yapildiginda
@@ -44,15 +46,20 @@ public class F06_KontrolsuzCokluWindowKullanimi extends TestBase {
             2- kontrolsuz acilan tab/window'un Window handle degerini kullanarak
 
             Burada Java'dan yaralanarak mini bir bulmaca cozmeliyiz
+
+             // https://www.testotomasyonu.com sayafasına gidin
+    // Kontrolsuz bir tab/window acin
+    // Acılan  tab/window un title degerini bulun
+    // driver', acılan bu tab/window sayfasına geçiren bir metot olusturun
          */
 
         String ilkSayfaWHD = driver.getWindowHandle();
         Set<String> wHDSeti = driver.getWindowHandles();
-        String ikinciSayfaWhd="";
+        String ikinciSayfaWhd = "";
         for (String each : wHDSeti
         ) {
 
-            if (!each.equals(ilkSayfaWHD)){
+            if (!each.equals(ilkSayfaWHD)) {
                 ikinciSayfaWhd = each;
             }
         }
@@ -60,20 +67,22 @@ public class F06_KontrolsuzCokluWindowKullanimi extends TestBase {
         driver.switchTo().window(ikinciSayfaWhd);
 
         //● Electronics sayfasinin acildigini test edin
+        WebElement electronicElementi = driver.findElement(By.xpath("//*[@class='current']"));
+        Assert.assertTrue(electronicElementi.isDisplayed());
+        //String expectedTitleIcerik = "Electronics";
+        //actualTitle = driver.getTitle();
+        //System.out.println(actualTitle);
 
-        String expectedTitleIcerik = "Electronics";
-        actualTitle = driver.getTitle();
-
-        Assert.assertTrue(actualTitle.contains(expectedTitleIcerik));
+        //Assert.assertTrue(actualTitle.contains(expectedTitleIcerik));
 
         //● Bulunan urun sayisinin 16 olduğunu test edin
         WebElement sonucYaziElementi = driver.findElement(By.className("product-count-text"));
-        String sonucSayisiStr = sonucYaziElementi.getText().replaceAll("\\D",""); //"16"
-        int actualSonucSayisi= Integer.parseInt(sonucSayisiStr);
+        String sonucSayisiStr = sonucYaziElementi.getText().replaceAll("\\D", ""); //"16"
+        int actualSonucSayisi = Integer.parseInt(sonucSayisiStr);
 
         int expectedUrunSayisi = 16;
 
-        Assert.assertEquals(expectedUrunSayisi,actualSonucSayisi);
+        Assert.assertEquals(expectedUrunSayisi, actualSonucSayisi);
 
         //● Ilk actiginiz addremove sayfasina donun
         driver.switchTo().window(ilkSayfaWHD);

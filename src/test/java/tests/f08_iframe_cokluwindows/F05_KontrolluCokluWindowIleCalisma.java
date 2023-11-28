@@ -23,6 +23,7 @@ public class F05_KontrolluCokluWindowIleCalisma extends TestBase {
         String actualUrl = driver.getCurrentUrl();
         Assert.assertTrue(actualUrl.contains(expectedUrlIcerik));
         String anasayfaWHD = driver.getWindowHandle();
+        System.out.println(driver.getWindowHandle());
         ReusableMethods.bekle(2);
         // yeni bir tab olarak elctronics linkini acin
 
