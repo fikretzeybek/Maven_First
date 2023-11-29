@@ -3,6 +3,7 @@ package tests.f09_Actions;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import utilities.ReusableMethods;
@@ -12,6 +13,8 @@ public class F06_MoveToElement extends TestBase {
 
     @Test
     public void mutaElement(){
+        JavascriptExecutor js=(JavascriptExecutor) driver;
+
         //1- https://www.testotomasyonu.com/ adresine gidin
         driver.get("https://www.testotomasyonu.com/");
         ReusableMethods.bekle(2);
@@ -31,7 +34,7 @@ public class F06_MoveToElement extends TestBase {
         driver.findElement(By.xpath("(//div[@class='product-box mb-2 pb-1'])[1]")).click();
         //4- Acilan sayfada urun isminin “Boys Shirt White Color” oldugunu test edin
         WebElement isimElementi = driver.findElement(By.xpath("//div[@class=' heading-sm mb-4']"));
-
+        js.executeScript("arguments[0].click();", isimElementi);
         String expectedIsim = "Boys Shirt White Color";
         String actualIsim = isimElementi.getText();
         System.out.println(isimElementi.getText());
