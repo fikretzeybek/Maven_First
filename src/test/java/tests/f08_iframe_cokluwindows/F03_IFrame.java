@@ -30,8 +30,10 @@ public class F03_IFrame extends TestBase {
         //WebElement playIFrame = driver.findElement(By.xpath("(//iframe)[4]"));
         driver.switchTo().frame(4);
         WebElement playButtonElementi = driver.findElement(By.xpath("//button[@aria-label='Oynat']"));
-        playButtonElementi.sendKeys(Keys.PAGE_DOWN);
+        //playButtonElementi.sendKeys(Keys.SPACE);
+        driver.manage().window().maximize();
         playButtonElementi.click();
+       // driver.manage().window().maximize();
 
         //5) ilk iframe'den çıkıp ana sayfaya dönünüz
         driver.switchTo().defaultContent();
