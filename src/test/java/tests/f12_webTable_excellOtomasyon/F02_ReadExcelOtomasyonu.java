@@ -14,7 +14,7 @@ public class F02_ReadExcelOtomasyonu {
     @Test
     public void excelOtomasyonTesti() throws IOException {
 
-        String dosyaYolu = "src/test/java/tests/day12_webTables_excelOtomasyon/ulkeler.xlsx";
+        String dosyaYolu = "src/test/java/tests/f12_webTable_excellOtomasyon/ulkeler.xlsx";
 
         FileInputStream fileInputStream = new FileInputStream(dosyaYolu);
         /*

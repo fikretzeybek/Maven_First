@@ -17,7 +17,7 @@ public class F03_ReadExcelTesti {
     @Test
     public void readExcelTesti() throws IOException {
 
-        String dosyaYolu = "src/test/java/tests/day12_webTables_excelOtomasyon/ulkeler.xlsx";
+        String dosyaYolu = "src/test/java/tests/f12_webTable_excellOtomasyon/ulkeler.xlsx";
         FileInputStream fileInputStream = new FileInputStream(dosyaYolu);
         Workbook workbook = WorkbookFactory.create(fileInputStream);
         sayfa1 = workbook.getSheet("Sayfa1");
